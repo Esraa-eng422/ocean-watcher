@@ -1,6 +1,7 @@
 import { FileText, Download, CheckCircle, AlertTriangle, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import IncidentReport from "./IncidentReport";
 
 const FinalReport = () => {
   const [generating, setGenerating] = useState(false);
@@ -23,9 +24,9 @@ const FinalReport = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-4">
         {/* Summary */}
-        <div className="space-y-4">
+        <div className="xl:col-span-2 space-y-4">
           <div className="flex items-center gap-3 bg-danger/10 border border-danger/30 rounded-lg p-4">
             <AlertTriangle className="w-6 h-6 text-danger shrink-0" />
             <div>
@@ -70,28 +71,12 @@ const FinalReport = () => {
         </div>
 
         {/* Report preview */}
-        <div className="bg-background/50 rounded-lg border border-border/30 p-4">
+        <div className="xl:col-span-3 bg-background/50 rounded-lg border border-border/30 p-4 overflow-y-auto max-h-[600px]">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
             AI Report Preview
           </p>
           {showPreview ? (
-            <div className="font-mono text-xs text-muted-foreground space-y-3 leading-relaxed">
-              <p className="text-foreground font-semibold text-sm">
-                OceanGuard Incident Report — {new Date().toLocaleDateString()}
-              </p>
-              <p>
-                <span className="text-accent">CLASSIFICATION:</span> Confirmed petroleum-based oil spill detected in the Ionian Sea (38.7°N, 20.3°E) via Sentinel-1 SAR imagery processed through MarineXt deep learning architecture.
-              </p>
-              <p>
-                <span className="text-accent">ANALYSIS:</span> The detected region exhibits characteristic low backscatter (−12.3 dB), irregular morphology (elongation 3.42, compactness 0.31), and strong alignment with prevailing surface currents (89° deviation). Random Forest classifier confirms oil-like signature with 99.94% confidence based on four spectral-geometric features.
-              </p>
-              <p>
-                <span className="text-accent">DRIFT FORECAST:</span> CMEMS surface current data combined with ERA5 10m wind fields indicate the slick will approach the western coastline within 18–24 hours under current conditions. Immediate deployment of containment booms is recommended.
-              </p>
-              <p>
-                <span className="text-accent">RECOMMENDATION:</span> Escalate to REMPEC and national coast guard. Initiate Tier-2 response protocol. Historical data indicates grounding as the most probable cause — verify vessel traffic in the area.
-              </p>
-            </div>
+            <IncidentReport />
           ) : (
             <div className="flex flex-col items-center justify-center h-48 text-muted-foreground/40">
               <HelpCircle className="w-8 h-8 mb-2" />
