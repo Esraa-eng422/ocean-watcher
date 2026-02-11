@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin, Wind, Navigation, CheckCircle, XCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { MapPin, Wind, Navigation, CheckCircle, XCircle, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TrajectoryMap = () => {
+  const navigate = useNavigate();
   const mapRef = useRef<HTMLDivElement>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
 
@@ -131,6 +134,14 @@ const TrajectoryMap = () => {
               </div>
             </div>
           ))}
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full mt-3 text-xs gap-1.5"
+            onClick={() => navigate("/netcdf-details")}
+          >
+            <ExternalLink className="w-3.5 h-3.5" /> View NetCDF Details
+          </Button>
         </div>
       </div>
     </section>

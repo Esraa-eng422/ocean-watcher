@@ -1,6 +1,10 @@
-import { Droplets, Radio, Activity, Cpu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Droplets, Radio, Activity, Cpu, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="border-b border-border/50 bg-card/50 backdrop-blur-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -12,7 +16,7 @@ const Header = () => {
             <h1 className="text-lg font-semibold text-foreground tracking-tight">
               OceanGuard AI
             </h1>
-            <p className="text-xs text-muted-foreground">Oil Spill Detection System</p>
+            <p className="text-xs text-muted-foreground">📊 Oil Spill Detection Dashboard</p>
           </div>
         </div>
 
@@ -20,6 +24,15 @@ const Header = () => {
           <SystemIndicator icon={<Cpu className="w-3.5 h-3.5" />} label="CPU-only" />
           <SystemIndicator icon={<Radio className="w-3.5 h-3.5" />} label="Open-Source" />
           <SystemIndicator icon={<Activity className="w-3.5 h-3.5" />} label="Real-Time Ready" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground hover:text-foreground gap-1.5 ml-2"
+            onClick={() => navigate("/")}
+          >
+            <LogOut className="w-4 h-4" />
+            <span className="hidden sm:inline text-xs">Logout</span>
+          </Button>
         </div>
       </div>
     </header>
