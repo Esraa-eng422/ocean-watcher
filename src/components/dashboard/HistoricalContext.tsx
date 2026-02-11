@@ -1,5 +1,7 @@
-import { History, AlertTriangle, Shield, ShieldAlert, ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { History, AlertTriangle, Shield, ShieldAlert, ShieldCheck, ExternalLink } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { Button } from "@/components/ui/button";
 
 const causeData = [
   { name: "Grounding", value: 35, color: "#ef4444" },
@@ -16,6 +18,7 @@ const historicalSpills = [
 ];
 
 const HistoricalContext = () => {
+  const navigate = useNavigate();
   return (
     <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.3s" }}>
       <div className="flex items-center gap-2 mb-4">
@@ -89,6 +92,15 @@ const HistoricalContext = () => {
               <span className="text-accent font-medium">Prevention tip:</span> Use enhanced navigation systems in shallow coastal zones. Historical groundings in this region correlate with inadequate depth sounding data.
             </p>
           </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-xs gap-1.5"
+            onClick={() => navigate("/historical-reports")}
+          >
+            <ExternalLink className="w-3.5 h-3.5" /> View All Reports
+          </Button>
         </div>
 
         {/* Pie chart */}
