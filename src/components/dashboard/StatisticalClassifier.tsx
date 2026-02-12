@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { Brain, ChevronDown, ChevronUp } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
-import { Button } from "@/components/ui/button";
 
 const featureData = [
   { name: "Elongation", value: 33.2 },
@@ -12,25 +10,17 @@ const featureData = [
 
 const barColors = ["#22d3ee", "#06b6d4", "#0891b2", "#0e7490"];
 
-const syntheticCases = [
-  { id: 1, prediction: "Oil-like", confidence: 99.94 },
-  { id: 2, prediction: "Non-oil", confidence: 97.2 },
-  { id: 3, prediction: "Oil-like", confidence: 95.8 },
-  { id: 4, prediction: "Non-oil", confidence: 88.1 },
-  { id: 5, prediction: "Oil-like", confidence: 91.3 },
-  { id: 6, prediction: "Non-oil", confidence: 76.5 },
-];
-
-const MLClassification = () => {
-  const [showSynthetic, setShowSynthetic] = useState(false);
-
+const StatisticalClassifier = () => {
   return (
-    <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+    <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.25s" }}>
       <div className="flex items-center gap-2 mb-4">
-        <Brain className="w-5 h-5 text-accent" />
-        <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-          ML Classification Result
-        </h2>
+        <BarChart3 className="w-5 h-5 text-accent" />
+        <div>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+            Statistical Consistency Check
+          </h2>
+          <p className="text-[10px] text-muted-foreground mt-0.5">Supporting Evidence · Classifier 2</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -80,34 +70,11 @@ const MLClassification = () => {
         </div>
       </div>
 
-      {/* Synthetic test cases toggle */}
-      <div className="mt-4">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-xs text-muted-foreground hover:text-foreground"
-          onClick={() => setShowSynthetic(!showSynthetic)}
-        >
-          {showSynthetic ? <ChevronUp className="w-3.5 h-3.5 mr-1" /> : <ChevronDown className="w-3.5 h-3.5 mr-1" />}
-          {showSynthetic ? "Hide" : "Show"} Synthetic Test Cases
-        </Button>
-
-        {showSynthetic && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
-            {syntheticCases.map((c) => (
-              <div key={c.id} className="bg-background/50 border border-border/30 rounded-md px-3 py-2 text-center">
-                <p className="text-xs text-muted-foreground">Sample #{c.id}</p>
-                <p className={`text-sm font-medium ${c.prediction === "Oil-like" ? "text-danger" : "text-success"}`}>
-                  {c.prediction}
-                </p>
-                <p className="text-xs font-mono text-accent">{c.confidence}%</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <p className="text-[10px] text-muted-foreground/60 mt-3 italic">
+        Feature-based gradient boosting classifier — supports primary physics validation.
+      </p>
     </section>
   );
 };
 
-export default MLClassification;
+export default StatisticalClassifier;

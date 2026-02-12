@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { History, AlertTriangle, Shield, ShieldAlert, ShieldCheck, ExternalLink } from "lucide-react";
+import { History, Shield, ShieldAlert, ExternalLink } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Button } from "@/components/ui/button";
 
@@ -20,16 +20,15 @@ const historicalSpills = [
 const HistoricalContext = () => {
   const navigate = useNavigate();
   return (
-    <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+    <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.4s" }}>
       <div className="flex items-center gap-2 mb-4">
         <History className="w-5 h-5 text-accent" />
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-          Historical Context (NLP)
+          Historical Context
         </h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Risk zone + timeline */}
         <div className="md:col-span-2 space-y-4">
           {/* Risk badge */}
           <div className="flex items-center gap-3">
@@ -37,25 +36,8 @@ const HistoricalContext = () => {
               <ShieldAlert className="w-5 h-5 text-danger" />
               <div>
                 <p className="text-sm font-bold text-danger">HIGH RISK</p>
-                <p className="text-xs text-muted-foreground">Zone Classification</p>
+                <p className="text-xs text-muted-foreground">12 past incidents within 50 km</p>
               </div>
-            </div>
-            <div className="flex gap-1.5">
-              {[
-                { label: "HIGH", active: true, color: "bg-danger" },
-                { label: "MED", active: false, color: "bg-warning" },
-                { label: "LOW", active: false, color: "bg-accent" },
-                { label: "MIN", active: false, color: "bg-success" },
-              ].map((b) => (
-                <span
-                  key={b.label}
-                  className={`text-[10px] px-2 py-1 rounded ${
-                    b.active ? `${b.color}/20 text-foreground font-semibold` : "bg-muted/30 text-muted-foreground"
-                  }`}
-                >
-                  {b.label}
-                </span>
-              ))}
             </div>
           </div>
 
@@ -93,12 +75,7 @@ const HistoricalContext = () => {
             </p>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-xs gap-1.5"
-            onClick={() => navigate("/historical-reports")}
-          >
+          <Button variant="outline" size="sm" className="text-xs gap-1.5" onClick={() => navigate("/historical-reports")}>
             <ExternalLink className="w-3.5 h-3.5" /> View All Reports
           </Button>
         </div>
@@ -108,15 +85,7 @@ const HistoricalContext = () => {
           <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Cause Distribution</p>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
-              <Pie
-                data={causeData}
-                cx="50%"
-                cy="50%"
-                innerRadius={40}
-                outerRadius={70}
-                paddingAngle={3}
-                dataKey="value"
-              >
+              <Pie data={causeData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={3} dataKey="value">
                 {causeData.map((entry, i) => (
                   <Cell key={i} fill={entry.color} />
                 ))}
