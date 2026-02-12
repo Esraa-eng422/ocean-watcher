@@ -10,7 +10,7 @@ const Index = () => {
   return (
     <div className="min-h-screen ocean-gradient">
       <Header />
-      <main className="container mx-auto px-4 py-6 space-y-6 max-w-7xl">
+      <main className="container mx-auto px-4 py-8 space-y-8 max-w-7xl" role="main">
         <SARUpload />
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           <PhysicsValidation />

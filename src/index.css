@@ -30,13 +30,13 @@
     --destructive: 0 72% 51%;
     --destructive-foreground: 60 6% 93%;
 
-    --success: 142 71% 45%;
+    --success: 162 60% 45%;
     --success-foreground: 213 58% 11%;
 
     --warning: 38 92% 50%;
     --warning-foreground: 213 58% 11%;
 
-    --danger: 0 84% 60%;
+    --danger: 4 78% 62%;
     --danger-foreground: 60 6% 93%;
 
     --border: 216 25% 25%;
@@ -74,6 +74,11 @@
   code, .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  /* Focus-visible for keyboard navigation */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring rounded-sm;
+  }
 }
 
 @layer utilities {
@@ -86,7 +91,7 @@
   }
 
   .status-pulse {
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 3s ease-in-out infinite;
   }
 
   .ocean-gradient {
@@ -96,16 +101,16 @@
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  50% { opacity: 0.7; }
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-slide-up {
-  animation: slide-up 0.4s ease-out forwards;
+  animation: slide-up 0.35s ease-out forwards;
 }
 
 /* Leaflet overrides */
@@ -128,4 +133,16 @@
 ::-webkit-scrollbar-thumb {
   background: hsl(210 22% 37%);
   border-radius: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up,
+  .status-pulse {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
