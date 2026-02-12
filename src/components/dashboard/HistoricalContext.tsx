@@ -4,11 +4,11 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Button } from "@/components/ui/button";
 
 const causeData = [
-  { name: "Grounding", value: 35, color: "#ef4444" },
-  { name: "Collision", value: 25, color: "#f59e0b" },
-  { name: "Equipment Failure", value: 22, color: "#22d3ee" },
-  { name: "Operational", value: 12, color: "#8b5cf6" },
-  { name: "Unknown", value: 6, color: "#6b7280" },
+  { name: "Grounding", value: 35, color: "hsl(4, 78%, 62%)" },
+  { name: "Collision", value: 25, color: "hsl(38, 92%, 50%)" },
+  { name: "Equipment Failure", value: 22, color: "hsl(186, 80%, 42%)" },
+  { name: "Operational", value: 12, color: "hsl(260, 48%, 65%)" },
+  { name: "Unknown", value: 6, color: "hsl(210, 10%, 45%)" },
 ];
 
 const historicalSpills = [
@@ -20,9 +20,9 @@ const historicalSpills = [
 const HistoricalContext = () => {
   const navigate = useNavigate();
   return (
-    <section className="glass-card p-5 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-      <div className="flex items-center gap-2 mb-4">
-        <History className="w-5 h-5 text-accent" />
+    <section className="glass-card p-6 animate-slide-up" style={{ animationDelay: "0.25s" }} aria-label="Historical incident context">
+      <div className="flex items-center gap-2 mb-5">
+        <History className="w-5 h-5 text-accent" aria-hidden="true" />
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">
           Historical Context
         </h2>
@@ -30,12 +30,12 @@ const HistoricalContext = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2 space-y-4">
-          {/* Risk badge */}
+          {/* Risk badge — large, clear */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-danger/10 border border-danger/30 rounded-md px-4 py-2">
-              <ShieldAlert className="w-5 h-5 text-danger" />
+            <div className="flex items-center gap-2.5 bg-danger/10 border border-danger/30 rounded-lg px-5 py-3" role="status">
+              <ShieldAlert className="w-6 h-6 text-danger" aria-hidden="true" />
               <div>
-                <p className="text-sm font-bold text-danger">HIGH RISK</p>
+                <p className="text-base font-bold text-danger">⚠ HIGH RISK AREA</p>
                 <p className="text-xs text-muted-foreground">12 past incidents within 50 km</p>
               </div>
             </div>
@@ -43,24 +43,24 @@ const HistoricalContext = () => {
 
           {/* Historical spills table */}
           <div className="bg-background/50 rounded-lg border border-border/30 overflow-hidden">
-            <table className="w-full text-xs">
+            <table className="w-full text-xs" role="table" aria-label="Past incidents near this location">
               <thead>
                 <tr className="border-b border-border/30">
-                  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Year</th>
-                  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Distance</th>
-                  <th className="text-left px-3 py-2 text-muted-foreground font-medium">Cause</th>
-                  <th className="text-left px-3 py-2 text-muted-foreground font-medium hidden sm:table-cell">Vessel</th>
+                  <th className="text-left px-4 py-2.5 text-muted-foreground font-medium">Year</th>
+                  <th className="text-left px-4 py-2.5 text-muted-foreground font-medium">Distance</th>
+                  <th className="text-left px-4 py-2.5 text-muted-foreground font-medium">Cause</th>
+                  <th className="text-left px-4 py-2.5 text-muted-foreground font-medium hidden sm:table-cell">Vessel</th>
                 </tr>
               </thead>
               <tbody>
                 {historicalSpills.map((s) => (
                   <tr key={s.year} className="border-b border-border/20 last:border-0">
-                    <td className="px-3 py-2 font-mono text-foreground">{s.year}</td>
-                    <td className="px-3 py-2 text-muted-foreground">{s.distance}</td>
-                    <td className="px-3 py-2">
-                      <span className="bg-warning/10 text-warning px-1.5 py-0.5 rounded text-[10px]">{s.cause}</span>
+                    <td className="px-4 py-2.5 font-mono text-foreground">{s.year}</td>
+                    <td className="px-4 py-2.5 text-muted-foreground">{s.distance}</td>
+                    <td className="px-4 py-2.5">
+                      <span className="bg-warning/10 text-warning px-2 py-0.5 rounded text-[10px] font-medium">{s.cause}</span>
                     </td>
-                    <td className="px-3 py-2 text-muted-foreground hidden sm:table-cell">{s.vessel}</td>
+                    <td className="px-4 py-2.5 text-muted-foreground hidden sm:table-cell">{s.vessel}</td>
                   </tr>
                 ))}
               </tbody>
@@ -68,15 +68,15 @@ const HistoricalContext = () => {
           </div>
 
           {/* Prevention tip */}
-          <div className="flex items-start gap-2 bg-accent/5 border border-accent/20 rounded-md px-3 py-2">
-            <Shield className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-            <p className="text-xs text-muted-foreground">
-              <span className="text-accent font-medium">Prevention tip:</span> Use enhanced navigation systems in shallow coastal zones. Historical groundings in this region correlate with inadequate depth sounding data.
+          <div className="flex items-start gap-2.5 bg-accent/5 border border-accent/20 rounded-lg px-4 py-3">
+            <Shield className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-accent font-medium">Prevention tip:</span> Use enhanced navigation systems in shallow coastal zones. Historical groundings in this region correlate with inadequate depth data.
             </p>
           </div>
 
           <Button variant="outline" size="sm" className="text-xs gap-1.5" onClick={() => navigate("/historical-reports")}>
-            <ExternalLink className="w-3.5 h-3.5" /> View All Reports
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" /> View All Reports
           </Button>
         </div>
 
@@ -102,10 +102,10 @@ const HistoricalContext = () => {
               />
             </PieChart>
           </ResponsiveContainer>
-          <div className="space-y-1 mt-2">
+          <div className="space-y-1.5 mt-2">
             {causeData.map((c) => (
               <div key={c.name} className="flex items-center gap-2 text-[10px]">
-                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: c.color }} />
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: c.color }} aria-hidden="true" />
                 <span className="text-muted-foreground">{c.name}</span>
                 <span className="ml-auto font-mono text-foreground">{c.value}%</span>
               </div>
