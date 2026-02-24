@@ -6,6 +6,7 @@ import StatisticalClassifier from "@/components/dashboard/StatisticalClassifier"
 import TrajectoryMap from "@/components/dashboard/TrajectoryMap";
 import HistoricalContext from "@/components/dashboard/HistoricalContext";
 import DecisionSummary from "@/components/dashboard/DecisionSummary";
+import NeedHelp from "@/components/dashboard/NeedHelp";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <TrajectoryMap />
         <HistoricalContext />
         <DecisionSummary />
+        <NeedHelp />
       </main>
     </div>
   );
